@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test DTR — Page Produit Shopify</title>
+
+  <!-- Simule les métadonnées Shopify Analytics que le script lit -->
+  <script>
+    window.ShopifyAnalytics = {
+      meta: {
+        product: {
+          id: "string"
+        }
+      }
+    };
+  </script>
+
+  <!-- Injection du script DTR -->
+  <!-- data-api-url: en production, le script est injecté via l'App Embed Shopify
+       qui remplace cet attribut par l'URL de production du backend FastAPI -->
+  <script src="/static/dtr-injector.js" data-api-url="http://localhost:8000"></script>
+</head>
+<body style="font-family: system-ui, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 20px;">
+
+  <h1 class="product-title">Titre Produit Générique</h1>
+
+  <p class="product-description" style="color: #555;">
+    Découvrez notre produit exceptionnel avec des fonctionnalités incroyables.
+  </p>
+
+  <hr style="margin: 32px 0;" />
+
+  <h2 class="cross-sell-title">Produits recommandés</h2>
+
+  <div style="display: flex; gap: 16px; margin-top: 16px;">
+    <div style="border: 1px solid #ddd; border-radius: 8px; padding: 16px; flex: 1;">
+      <strong>Produit A</strong>
+      <p style="font-size: 14px; color: #777;">19,99 €</p>
+    </div>
+    <div style="border: 1px solid #ddd; border-radius: 8px; padding: 16px; flex: 1;">
+      <strong>Produit B</strong>
+      <p style="font-size: 14px; color: #777;">29,99 €</p>
+    </div>
+    <div style="border: 1px solid #ddd; border-radius: 8px; padding: 16px; flex: 1;">
+      <strong>Produit C</strong>
+      <p style="font-size: 14px; color: #777;">39,99 €</p>
+    </div>
+  </div>
+
+  <p style="margin-top: 48px; font-size: 12px; color: #aaa; text-align: center;">
+    Page de test DTR — ajoutez <code>?utm_source=tiktok</code> dans l'URL pour activer le remplacement.
+  </p>
+
+</body>
+</html>

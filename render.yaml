@@ -1,0 +1,48 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# Render Blueprint — Automatic infrastructure provisioning
+#
+# Deploy with:
+#   render blueprint apply
+#
+# Or connect your GitHub repo at https://dashboard.render.com
+# and Render will auto-detect this file.
+# ──────────────────────────────────────────────────────────────────────────────
+
+services:
+  # ── FastAPI Backend ─────────────────────────────────────────────────────────
+  - type: web
+    name: dtr-backend
+    runtime: docker
+    repo: https://github.com/YOUR_ORG/dtr-backend.git
+    branch: main
+    plan: standard  # starter | standard | pro
+    healthCheckPath: /health
+    envVars:
+      # ── Supabase ──────────────────────────────────────────────────────────
+      - key: SUPABASE_URL
+        sync: false  # Set manually in Render dashboard
+      - key: SUPABASE_KEY
+        sync: false
+
+      # ── LLM API (DeepSeek / OpenAI) ──────────────────────────────────────
+      - key: LLM_BASE_URL
+        sync: false
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_MODEL
+        sync: false
+
+      # ── App settings ─────────────────────────────────────────────────────
+      - key: APP_ENV
+        value: production
+      - key: LOG_LEVEL
+        value: info
+
+    # Optional custom domain
+    # domains:
+    #   - api.dtr-extension.com
+
+    # Auto-scaling (paid plans only)
+    # scaling:
+    #   minInstances: 1
+    #   maxInstances: 3

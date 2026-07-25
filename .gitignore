@@ -1,0 +1,79 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# DTR Extension Shopify — Git Ignore
+# ──────────────────────────────────────────────────────────────────────────────
+
+# Secrets & environment (NEVER commit real credentials)
+.env
+*.key
+*.pem
+*.crt
+secrets/
+credentials.json
+service-account.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+*.whl
+.venv/
+venv/
+env/
+.uv/
+
+# Node / Remix
+node_modules/
+.cache/
+.turbo/
+build/
+dist/
+.vite/
+*.tsbuildinfo
+
+# Prisma
+prisma/migrations/
+prisma/*.db
+prisma/*.db-journal
+
+# Shopify
+.shopify/
+shopify.app.toml
+extensions/
+
+# IDE
+.vscode/settings.json
+.vscode/launch.json
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# OS
+Thumbs.db
+.DS_Store
+Desktop.ini
+
+# Docker
+.docker/
+
+# Test artifacts
+*.log
+_test_*.txt
+_all_*.txt
+_fix_*.txt
+_svc_*.txt
+_synth_*.txt
+_web_*.txt
+_test_*.py
+
+# Misc
+.env.local
+.env.production
