@@ -7,7 +7,7 @@ installGlobals();
 export default defineConfig({
   plugins: [
     remix({
-      // Routes are in app/routes/ (already contains the dashboard)
+      appDirectory: ".",
       routes(defineRoutes) {
         return defineRoutes((route) => {
           route("/app", "routes/app._index.tsx", { index: true });

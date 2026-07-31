@@ -2,5 +2,6 @@
   "framework": "remix",
   "buildCommand": "npm run build",
   "installCommand": "npm install --legacy-peer-deps",
-  "outputDirectory": "build"
+  "outputDirectory": "build",
+  "rootDirectory": "app"
 }
