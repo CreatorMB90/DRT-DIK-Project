@@ -3,5 +3,9 @@
   "buildCommand": "npm run build",
   "installCommand": "npm install --legacy-peer-deps",
   "outputDirectory": "build",
-  "rootDirectory": "app"
+  "rootDirectory": "app",
+  "regions": ["cdg1"],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }

@@ -353,6 +353,15 @@ async def generate_rule(
     Failures in the background task are logged but **never** propagated
     to the client (the route always returns 202 if the input is valid).
     """
+    # ── Plan-gating: detect the plan tier from the payload or default ─
+    # The GenerateRulePayload does not carry plan_tier explicitly (it is
+    # a legacy/internal endpoint). Default to "launch" for safety so
+    # structure/styling are stripped server-side unless explicitly
+    # overridden.
+    plan_tier = getattr(payload, "plan_tier", None) or "launch"
+    if plan_tier not in VALID_PLAN_TIERS:
+        plan_tier = "launch"
+
     background_tasks.add_task(
         generate_and_save_psychological_rules,
         shop_domain=payload.shop_domain,
@@ -361,6 +370,7 @@ async def generate_rule(
         product_title=payload.product_title,
         product_description=payload.product_description,
         theme_selectors=payload.theme_selectors,
+        plan_tier=plan_tier,
     )
 
     return {

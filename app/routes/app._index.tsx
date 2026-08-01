@@ -36,7 +36,6 @@ import {
   TextField,
 } from "@shopify/polaris";
 import { authenticate } from "~/shopify.server";
-import type { BillingCheckParams } from "@shopify/shopify-app-remix/server";
 
 // ---------------------------------------------------------------------------
 // Constants — Plan tiers
@@ -114,13 +113,16 @@ const PLAN_LIMITATIONS: Record<PlanTier, string[]> = {
 // ---------------------------------------------------------------------------
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const { session, billing } = await authenticate.admin(request);
+  const { admin, session, billing } = await authenticate.admin(request);
 
   // Resolve active plan from billing
-  const billingCheck = await billing.require({
+  const billingCheck = (await billing.require({
     plans: [PLAN_LAUNCH_AMOUNT.toString(), PLAN_GROWTH_AMOUNT.toString()],
-    onFailure: () => ({ hasActivePayment: false, plan: null }),
-  });
+    onFailure: (error: any) => {
+      console.error("[DTR DASHBOARD] Billing check failed:", error);
+      return { hasActivePayment: false, plan: null } as any;
+    },
+  })) as { hasActivePayment: boolean; appSubscriptions?: { amount: number }[] };
 
   let activePlan: PlanTier | null = null;
   let planAmount: number | null = null;
@@ -137,10 +139,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   // Fetch products from Shopify Admin API
   let products: Product[] = [];
   try {
-    const restClient = new (await import("@shopify/shopify-api")).GraphqlClient({
-      session,
-    });
-
     const query = `
       query GetProducts($first: Int!) {
         products(first: $first) {
@@ -156,11 +154,12 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       }
     `;
 
-    const response = (await restClient.query({
-      data: { query, variables: { first: 50 } },
-    })) as any;
+    const response = await admin.graphql(query, {
+      variables: { first: 50 },
+    });
 
-    const edges = response?.body?.data?.products?.edges ?? [];
+    const result = await response.json();
+    const edges = result.data?.products?.edges ?? [];
 
     // Fetch DTR rules count for each product (calls our FastAPI backend)
     const dtrBaseUrl = process.env.DTR_BACKEND_URL ?? "http://localhost:8000";
