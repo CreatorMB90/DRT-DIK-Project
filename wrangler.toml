@@ -22,8 +22,3 @@ command = "npm run build"
 
 [build.environment]
 NODE_VERSION = "20"
-
-# ── Routing: remix handles all SSR, static assets served from build/client ─
-[[routes]]
-pattern = "/build/*"
-type = "ESModule"
