@@ -6,7 +6,7 @@
  * Authenticates the Shopify admin session and uses the GraphQL Admin API
  * to create a ScriptTag that injects dtr-injector.js into all product pages.
  */
-import { json, type LoaderFunctionArgs, redirect } from "@remix-run/node";
+import { json, type LoaderFunctionArgs, redirect } from "@remix-run/cloudflare";
 import { authenticate } from "~/shopify.server";
 
 /** The backend URL where dtr-injector.js is served as a static file. */

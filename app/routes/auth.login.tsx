@@ -10,7 +10,7 @@
  *      token exchange and redirects to the billing selection screen.
  */
 
-import type { LoaderFunctionArgs } from "@remix-run/node";
+import type { LoaderFunctionArgs } from "@remix-run/cloudflare";
 import shopify from "~/shopify.server";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {

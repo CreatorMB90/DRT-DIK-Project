@@ -6,7 +6,7 @@
  * Authenticates the Shopify admin session, lists all ScriptTags, finds the
  * one pointing to dtr-injector.js, and deletes it.
  */
-import { json, type LoaderFunctionArgs, redirect } from "@remix-run/node";
+import { json, type LoaderFunctionArgs, redirect } from "@remix-run/cloudflare";
 import { authenticate } from "~/shopify.server";
 
 /** The backend URL where dtr-injector.js is served as a static file. */

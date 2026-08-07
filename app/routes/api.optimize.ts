@@ -7,7 +7,7 @@
  *
  * POST /api/optimize
  */
-import { json, type ActionFunctionArgs } from "@remix-run/node";
+import { json, type ActionFunctionArgs } from "@remix-run/cloudflare";
 import { authenticate } from "~/shopify.server";
 
 /** Backend URL — MUST point to the live Render service in production. */
