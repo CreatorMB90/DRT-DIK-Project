@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
 from app.config.config import settings
-from app.routes.webhooks import router as webhooks_router
+from app.backend_routes.webhooks import router as webhooks_router
 from app.services.supabase_client import get_supabase_client, _supabase_client
 
 app = FastAPI(
@@ -26,7 +26,6 @@ app.include_router(webhooks_router, prefix="/api/v1")
 # ---------------------------------------------------------------------------
 # Health
 # ---------------------------------------------------------------------------
-
 
 @app.get("/health")
 async def health_check():
