@@ -1,0 +1,29 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# DTR Extension Shopify — Cloudflare Pages Configuration
+#
+# Deploy with:
+#   1. Connect your GitHub repo at https://dash.cloudflare.com → Workers & Pages
+#   2. Framework preset: Remix
+#   3. Root directory: app
+#   4. Build command:   npm run build
+#   5. Output directory: build/client
+#
+# Local dev:
+#   cd app && npx wrangler pages dev build/client
+# ──────────────────────────────────────────────────────────────────────────────
+
+name = "dtr-extension-shopify"
+compatibility_date = "2026-08-01"
+compatibility_flags = ["nodejs_compat"]
+
+# ── Build configuration (used by Cloudflare Pages CI) ─────────────────────
+[build]
+command = "npm run build"
+
+[build.environment]
+NODE_VERSION = "20"
+
+# ── Routing: remix handles all SSR, static assets served from build/client ─
+[[routes]]
+pattern = "/build/*"
+type = "ESModule"
