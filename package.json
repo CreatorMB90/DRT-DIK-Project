@@ -8,7 +8,20 @@
     "dev": "cd app && npm run dev"
   },
   "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "@remix-run/cloudflare": "^2.15.0",
+    "@remix-run/cloudflare-pages": "^2.15.0",
     "@remix-run/dev": "^2.15.0",
+    "@remix-run/node": "^2.15.0",
+    "@remix-run/react": "^2.15.0",
+    "@remix-run/serve": "^2.15.0",
+    "@shopify/polaris": "^13.9.0",
+    "@shopify/shopify-api": "^11.6.0",
+    "@shopify/shopify-app-remix": "^3.3.0",
+    "@shopify/shopify-app-session-storage-prisma": "^6.0.0",
+    "isbot": "^5.1.21",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "vite": "^5.4.11"
   }
 }
