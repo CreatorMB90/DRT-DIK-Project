@@ -8,7 +8,7 @@
     "dev": "cd app && npm run dev"
   },
   "dependencies": {
-    "@prisma/client": "^5.22.0",
+    "@prisma/client": "^6.6.0",
     "@remix-run/cloudflare": "^2.15.0",
     "@remix-run/cloudflare-pages": "^2.15.0",
     "@remix-run/dev": "^2.15.0",

@@ -12,7 +12,7 @@
     "pages:dev": "wrangler pages dev build/client"
   },
   "dependencies": {
-    "@prisma/client": "^5.22.0",
+    "@prisma/client": "^6.6.0",
     "@remix-run/cloudflare": "^2.15.0",
     "@remix-run/cloudflare-pages": "^2.15.0",
     "@remix-run/node": "^2.15.0",
@@ -30,7 +30,7 @@
     "@remix-run/dev": "^2.15.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
-    "prisma": "^5.22.0",
+    "prisma": "^6.6.0",
     "typescript": "^5.6.3",
     "vite": "^5.4.11"
   },
